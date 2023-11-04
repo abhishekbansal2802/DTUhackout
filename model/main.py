@@ -6,13 +6,17 @@ from imageCaptioning import predict_step
 
 if __name__ == "__main__":
     while (True):
-        (screenshot, flag) = captureScreenshot()
+        tempVar = captureScreenshot()
+        if (tempVar == None):
+            continue
+        (screenshot, flag) = tempVar
         if (flag == 1):
             if (screenshot):
                 text = imageToText(screenshot)
                 if (text):
                     textToAudio(text)
         else:
-            text = predict_step(screenshot)
-            if (text):
-                textToAudio(text)
+            screenshot.save("temp.png")
+            text = predict_step(["./temp.png"])
+            if (len(text) > 0):
+                textToAudio(text[0])

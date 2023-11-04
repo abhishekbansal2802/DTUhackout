@@ -49,4 +49,5 @@ def captureScreenshot():
             )
             output = (screenshot, maxArr[5])
         screenshot.save("newScreenshotPng.png")
+        print(output)
         return output
