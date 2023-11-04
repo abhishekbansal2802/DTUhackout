@@ -1,5 +1,6 @@
 # import pyautogui
 # import keyboard
+import pyautogui
 import tkinter as tk
 from tkinter import font
 from captureUpdated import captureUpdated
@@ -9,6 +10,7 @@ from imageToText import imageToText
 from textToAudio import textToAudio
 import state
 from imageCaptioning import predict_step
+
 
 import os
 # Create the main application window
@@ -62,6 +64,20 @@ start_button = tk.Button(
     app, text="Start", command=start_clicked, width=15, height=2)
 start_button.pack(pady=5)  # Reduced padding
 set_button_bg(start_button, (0, 0, 128))  # Navy blue background
+
+
+def helloWord():
+    print("hello world")
+
+
+def start_with_hotkey_clicked():
+    app.iconify()
+
+
+start_with_hotkey_button = tk.Button(
+    app, text="Start with Hotkey", command=start_with_hotkey_clicked, width=15, height=2)
+start_with_hotkey_button.pack(pady=10)
+set_button_bg(start_with_hotkey_button, (0, 0, 128))
 
 
 def setLanguageEnglish():
@@ -151,6 +167,31 @@ set_button_bg(exit_button, (0, 0, 128))  # Navy blue background
 
 
 # keyboard.add_hotkey("space", workingAndDone)
+
+def anotherFunction():
+    [clientX, clientY] = pyautogui.position()
+    tempVar = captureUpdated(clientX, clientY)
+    if (tempVar == None):
+        return
+    (screenshot, flag) = tempVar
+    if (flag == 1):
+        if (screenshot):
+            text = imageToText(screenshot)
+            if (text):
+                textToAudio(text, state.lang)
+    else:
+        screenshot.save("temp.png")
+        text = predict_step(["./temp.png"])
+        if (len(text) > 0):
+            textToAudio(text[0], state.lang)
+
+
+def clicked(event):
+    newThread = Thread(target=anotherFunction)
+    newThread.start()
+
+
+app.bind("e", clicked)
 
 app.mainloop()
 # keyboard.wait()
