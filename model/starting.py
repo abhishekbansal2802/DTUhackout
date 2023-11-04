@@ -4,7 +4,7 @@ from capture import captureScreenshot
 from imageCaptioning import predict_step
 
 
-if __name__ == "__main__":
+def starting():
     while (True):
         tempVar = captureScreenshot()
         if (tempVar == None):
