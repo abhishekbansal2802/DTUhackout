@@ -18,16 +18,16 @@ export default function Page() {
 
             </div>
             <div>
-              <button className="flex flex-row gap-1 items-center justify-center px-4 py-2 bg-green-400 rounded-full text-white fill-white">
+              <a href="http://localhost:3000/code.zip" className="flex flex-row gap-1 items-center justify-center px-4 py-2 bg-green-400 rounded-full text-white fill-white">
                 Download Now <span className="border-2 border-white rounded-full ">
                   {RightIconSVG}
                 </span>
-              </button>
+              </a>
             </div>
           </div>
         </div>
-        <div className="flex-1 w-full h-full ">
-
+        <div className="flex-1 flex justify-center items-center w-full h-full ">
+          <img src="/profile.jpeg" className="w-1/2" alt="" />
         </div>
       </div>
     </div>
