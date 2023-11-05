@@ -16,6 +16,8 @@ custom_font = font.nametofont("TkDefaultFont")
 custom_font.configure(size=24)
 app.option_add("*Font", custom_font)
 
+app.config(bg="white")
+
 
 def set_label_text_with_opacity(label, text, color, opacity):
     hex_color = "#{:02X}{:02X}{:02X}".format(*color)
@@ -47,17 +49,8 @@ start_button = tk.Button(
 start_button.pack(pady=5)
 set_button_bg(start_button, (0, 0, 128))
 
-
-def helloWord():
-    print("hello world")
-
-
-def start_with_hotkey_clicked():
-    app.iconify()
-
-
 start_with_hotkey_button = tk.Button(
-    app, text="Start with Hotkey", command=start_with_hotkey_clicked, width=15, height=2)
+    app, text="Start with Hotkey", width=15, height=2)
 start_with_hotkey_button.pack(pady=10)
 set_button_bg(start_with_hotkey_button, (0, 0, 128))
 
